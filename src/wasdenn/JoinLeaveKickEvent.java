@@ -41,5 +41,5 @@ public class JoinLeaveKickEvent implements Listener {
         }
     }
 
-    //jallo hass
+    //mallo Heyssam
 }
