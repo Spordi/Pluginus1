@@ -83,7 +83,6 @@ public class Main extends JavaPlugin implements Listener {
 
             return true;
         }
-
         if (cmd.getName().equalsIgnoreCase("clear"))
             if (p.hasPermission("Main.clear")) {
                 p.getInventory().clear();
@@ -96,8 +95,6 @@ public class Main extends JavaPlugin implements Listener {
                 p.sendMessage("Set own gamemode to Survival Mode");
                 return true;
             }
-
-
         if (cmd.getName().equalsIgnoreCase("gm"))
             if (p.isOp()) {
                 if(args.length==1) {
@@ -148,22 +145,6 @@ public class Main extends JavaPlugin implements Listener {
 
                 }
                 return true;
-            }
-
-
-        if (cmd.getName().equalsIgnoreCase("gm2"))
-            if (p.isOp()) {
-                p.setGameMode(GameMode.ADVENTURE);
-                p.sendMessage("Set own gamemode to Adventure Mode");
-                return true;
-            }
-
-        if (cmd.getName().equalsIgnoreCase("gm3"))
-            if (p.isOp()) {
-                p.setGameMode(GameMode.SPECTATOR);
-                p.sendMessage("Set own gamemode to Spectator Mode");
-                return true;
-
             }
         return false;
     }
