@@ -41,5 +41,5 @@ public class JoinLeaveKickEvent implements Listener {
         }
     }
 
-    //jallo hasse
+    //jallo hass
 }
