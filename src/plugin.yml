@@ -9,11 +9,6 @@ commands:
     description: setzt dich in den spectator mode
     usage: </command>
 
-  clear:
-    description: Cleart Inventar
-    usage: </command>
-    permission: Main.clear
-    aliases: [cl]
 
   dersatzdesmeyssam:
     description: Meyssam hat immer Recht
