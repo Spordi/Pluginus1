@@ -1,20 +1,17 @@
 package wasdenn;
+
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.World;
-import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -22,11 +19,16 @@ public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+
+        registerEvents();
+
         this.getServer().getPluginManager().registerEvents(this, this);
 
 
         System.out.println("[Info] Plugin erfolgreich aktiviert!");
     }
+
+
 
     @Override
     public void onDisable() {
@@ -118,26 +120,31 @@ public class Main extends JavaPlugin implements Listener {
                 }
                 if(args.length==2) {
                     Player p1 = Bukkit.getPlayer(args[1]);
-                    if(!p1.isOnline()) {
+                    if(p1==null) {
                         p.sendMessage("§cGeht nicht du huso");
                         return true;
                     }
                     if(args[0].equalsIgnoreCase("0")) {
                         p1.setGameMode(GameMode.SURVIVAL);
-                        p1.sendMessage("Set" + p1.getDisplayName() + "own gamemode to Survival Mode");
+                        p1.sendMessage(p.getDisplayName() + " set your gamemode to Survival Mode");
+                        p.sendMessage("Set" + p1.getDisplayName() + "'s gamemode to Survival Mode");
                     }
                     else if(args[0].equalsIgnoreCase("1")) {
                         p1.setGameMode(GameMode.CREATIVE);
-                        p1.sendMessage("Set " + p1.getDisplayName() + "s own gamemode to Creative Mode");
+                        p1.sendMessage(p.getDisplayName() + " set your gamemode Creative Mode");
+                        p.sendMessage("Set" + p1.getDisplayName() + "'s gamemode to Creative Mode");
                     }
                     else if(args[0].equalsIgnoreCase("2")) {
                         p1.setGameMode(GameMode.ADVENTURE);
-                        p1.sendMessage("Set "  + p1.getDisplayName() + "s gamemode to Adventure Mode");
+                        p1.sendMessage(p.getDisplayName() + " set your gamemode to Adventure Mode");
+                        p.sendMessage("Set" + p1.getDisplayName() + "'s gamemode to Adventure Mode");
                     }
                     else if(args[0].equalsIgnoreCase("3")) {
                         p1.setGameMode(GameMode.SPECTATOR);
-                        p1.sendMessage("Set " + p1.getDisplayName() + "s gamemode to Spectator Mode");
+                        p1.sendMessage(p.getDisplayName() + " set your gamemode to Spectator Mode");
+                        p.sendMessage("Set" + p1.getDisplayName() + "'s gamemode to Spectator Mode");
                     }
+                    return true;
 
                 }
                 return true;
@@ -161,43 +168,16 @@ public class Main extends JavaPlugin implements Listener {
         return false;
     }
 
-    @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
-        Player p = e.getPlayer();
-        if (p.isOp()) {
-            e.setJoinMessage("§4" + p.getName() + " §bist dem Spiel beigetreten");
-        } else {
-            e.setJoinMessage("§b" + p.getName() + " §3ist schwul");
-        }
-    }
 
-    @EventHandler
-    public void onQuit(PlayerQuitEvent e) {
-        Player p = e.getPlayer();
-        if (p.isOp()) {
-            e.setQuitMessage("§bTschuessi §4" + p.getName() + " §b:^)");
-        } else {
-            e.setQuitMessage("§b" + p.getName() + " §3hat das Spiel verlassen");
-        }
-    }
-    @EventHandler
-    public void onKick(PlayerKickEvent e) {
-        Player p = e.getPlayer();
-        if(p.isOp()) {
-            e.setLeaveMessage("§fLass das §4:rage:");
-        }
-        else {
-            e.setLeaveMessage("§f du Arschi §f:rage:");
-        }
-    }
     @EventHandler
     public void onSend(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
         String message = e.getMessage();
         if(p.isOp()) e.setMessage("§4" + message);
     }
-    //ur mom has big gay
-
+public void registerEvents() {
+        new JoinLeaveKickEvent(this);
+}
 }
 
 
