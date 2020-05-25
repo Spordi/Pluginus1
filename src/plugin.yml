@@ -1,0 +1,46 @@
+name: Pluginus1
+version: die einzig wahre
+author: Meyssus und Lassus
+main: wasdenn.Main
+
+commands:
+
+  gm0:
+    description: setz dich in den survival mode
+    usage: </command>
+    aliases: [gamemode 0]
+  gm1:
+    description: setzt dich in den creative mode
+    usage: </command>
+    aliases: [gamemode 1]
+  gm2:
+    description: setzt dich in den adventur mode
+    usage: </command>
+    aliases: [gamemode 2]
+  gm3:
+    description: setzt dich in den spectator mode
+    usage: </command>
+    permission: Main.clear
+    aliases: [gamemode 3]
+
+  clear:
+    description: Cleart Inventar
+    usage: </command>
+    permission: Main.clear
+    aliases: [cl]
+
+  dersatzdesmeyssam:
+    description: Meyssam hat immer Recht
+    usage: </command>
+
+  wahrheit:
+    description: Zeigt die Wahrheit an
+    usage: </wahrheit>
+
+  heal:
+    description: helth, ein gesunder Witz heilt dich :)
+    usage: </heal>
+
+  reset:
+    description: Hi
+    usage: </reset>
