@@ -11,18 +11,9 @@ import wasdenn.Listeners.JoinLeaveKickListener;
 
 import java.util.ArrayList;
 
-
 public class Main extends JavaPlugin implements Listener {
 
     public ArrayList<Player> marmeladenbrotmithonig = new ArrayList<>();
-
-
-
-
-
-
-
-
     @Override
     public void onEnable() {
 
