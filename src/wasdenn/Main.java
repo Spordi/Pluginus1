@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Commands.GmCommand;
 import wasdenn.Commands.HealCommand;
+import wasdenn.Commands.SdmCommand;
 import wasdenn.Commands.WahrheitCommand;
 
 import java.util.ArrayList;
@@ -37,13 +38,6 @@ public class Main extends JavaPlugin implements Listener {
 
     public boolean onCommand(CommandSender sender, Command cmd, String cmdlabel, String[] args) {
         Player p = (Player) sender;
-
-        if (cmd.getName().equalsIgnoreCase("dersatzdesmeyssam")) {
-            p.sendMessage("§6Meyssam hat immer recht.");
-            p.sendMessage("§6da kann man nichts machen :/");
-            return true;
-        }
-
 
         if (cmd.getName().equalsIgnoreCase("heal")) {
             if (marmeladenbrotmithonig.contains(p) && !p.isOp()) {
@@ -88,9 +82,11 @@ public class Main extends JavaPlugin implements Listener {
 
 
         public void registerCommands() {
+            getCommand("dersatzdesmeyssam").setExecutor(new SdmCommand(this));
             getCommand("gm").setExecutor(new GmCommand(this));
             getCommand("heal").setExecutor(new HealCommand(this));
             getCommand("wahrheit").setExecutor(new WahrheitCommand(this));
+
         }
         public void registerEvents() {
             new JoinLeaveKickEvent(this);
