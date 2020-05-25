@@ -41,4 +41,6 @@ public class JoinLeaveKickEvent implements Listener {
             e.setLeaveMessage("§f du Arschi §f:rage:");
         }
     }
+
+    //jallo hasse
 }
