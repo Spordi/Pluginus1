@@ -9,12 +9,12 @@ import wasdenn.Commands.*;
 import wasdenn.Listeners.ChatListener;
 import wasdenn.Listeners.JoinLeaveKickListener;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class Main extends JavaPlugin implements Listener {
 
-    public ArrayList<UUID> marmeladenbrotmithonig = new ArrayList<>();
+    public HashMap<UUID, Integer> marmeladenbrotmithonig = new HashMap<>();
     @Override
     public void onEnable() {
 
