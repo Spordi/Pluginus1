@@ -16,4 +16,6 @@ public class ChatFarben implements Listener {
         String message = e.getMessage();
         if(p.isOp()) e.setMessage("§4" + message);
     }
+
+    //lasse is gay have a nice day
 }
