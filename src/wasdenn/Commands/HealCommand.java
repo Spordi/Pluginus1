@@ -12,6 +12,7 @@ import wasdenn.Main;
 import java.util.UUID;
 
 public class HealCommand implements CommandExecutor {
+
     private final Main plugin;
 
     public HealCommand(Main main) {
@@ -27,12 +28,13 @@ public class HealCommand implements CommandExecutor {
         Player p = (Player) sender;
         UUID a = p.getUniqueId();
         if (cmd.getName().equalsIgnoreCase("heal")) {
-            if (plugin.marmeladenbrotmithonig.contains(a) && !p.isOp()) {
+            if (plugin.marmeladenbrotmithonig.containsKey(a) && !p.isOp()) {
                 p.sendMessage("§6lass das §4:rage:");
+                p.sendMessage("§cDu musst noch §e" + plugin.marmeladenbrotmithonig.get(a) + " §cSekunden warten!");
                 return true;
             }
 
-            plugin.marmeladenbrotmithonig.add(a);
+            plugin.marmeladenbrotmithonig.put(a, 6000);
             p.setHealth(20);
             p.setFoodLevel(20);
             p.sendMessage("§2Treffen sich zwei Jäger im Wald");
@@ -51,10 +53,15 @@ public class HealCommand implements CommandExecutor {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    plugin.marmeladenbrotmithonig.remove(a);
-
+                    if(plugin.marmeladenbrotmithonig.get(a) == 0) {
+                        plugin.marmeladenbrotmithonig.remove(a);
+                        cancel();
+                        return;
+                    }
+                    plugin.marmeladenbrotmithonig.replace(a, plugin.marmeladenbrotmithonig.get(a)-1);
+                    //plugin.marmeladenbrotmithonig.remove(a);
                 }
-            }.runTaskLater(plugin, 6000);
+            }.runTaskTimer(plugin, 0, 20);
 
             return true;
         }
