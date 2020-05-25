@@ -7,14 +7,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import wasdenn.Commands.GmCommand;
+import wasdenn.Commands.HealCommand;
 
 import java.util.ArrayList;
 
-import static org.spigotmc.SpigotConfig.registerCommands;
-
 public class Main extends JavaPlugin implements Listener {
 
-    ArrayList<Player> marmeladenbrotmithonig = new ArrayList<>();
+    public ArrayList<Player> marmeladenbrotmithonig = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -94,6 +94,7 @@ public class Main extends JavaPlugin implements Listener {
 
         public void registerCommands() {
             getCommand("gm").setExecutor(new GmCommand(this));
+            getCommand("heal").setExecutor(new HealCommand(this));
         }
         public void registerEvents() {
             new JoinLeaveKickEvent(this);
