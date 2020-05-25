@@ -4,7 +4,9 @@ author: Meyssus und Lassus
 main: wasdenn.Main
 
 commands:
-
+  inv:
+    description: Inventar wird gecleart/zurückgeholt
+    usage: </command>
   gm:
     description: setzt dich in den spectator mode
     usage: </command>
