@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class JoinLeaveKickEvent implements Listener {
     private final Main plugin;
-
     public JoinLeaveKickEvent(Main main) {
         this.plugin = main;
     }

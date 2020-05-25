@@ -168,16 +168,10 @@ public class Main extends JavaPlugin implements Listener {
         return false;
     }
 
-
-    @EventHandler
-    public void onSend(AsyncPlayerChatEvent e) {
-        Player p = e.getPlayer();
-        String message = e.getMessage();
-        if(p.isOp()) e.setMessage("§4" + message);
-    }
 public void registerEvents() {
         new JoinLeaveKickEvent(this);
-}
+        new ChatFarben(this);
+    }
 }
 
 
