@@ -1,4 +1,4 @@
-package wasdenn;
+package wasdenn.Listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -6,10 +6,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import wasdenn.Main;
 
-public class JoinLeaveKickEvent implements Listener {
+public class JoinLeaveKickListener implements Listener {
     private final Main plugin;
-    public JoinLeaveKickEvent(Main main) {
+    public JoinLeaveKickListener(Main main) {
         this.plugin = main;
     }
     @EventHandler

@@ -1,13 +1,14 @@
-package wasdenn;
+package wasdenn.Listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import wasdenn.Main;
 
-public class ChatFarben implements Listener {
+public class ChatFarbenListener implements Listener {
     private final Object plugin;
-    public ChatFarben(Main main) {
+    public ChatFarbenListener(Main main) {
         this.plugin = main;
     }
     @EventHandler

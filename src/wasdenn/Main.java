@@ -1,16 +1,16 @@
 package wasdenn;
 
-import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Commands.GmCommand;
 import wasdenn.Commands.HealCommand;
 import wasdenn.Commands.SdmCommand;
 import wasdenn.Commands.WahrheitCommand;
+import wasdenn.Listeners.ChatFarbenListener;
+import wasdenn.Listeners.JoinLeaveKickListener;
 
 import java.util.ArrayList;
 
@@ -26,11 +26,8 @@ public class Main extends JavaPlugin implements Listener {
 
         this.getServer().getPluginManager().registerEvents(this, this);
 
-
         System.out.println("[Info] Plugin erfolgreich aktiviert!");
     }
-
-
     @Override
     public void onDisable() {
         System.out.println("[Info] Plugin erfolgreich deaktiviert!");
@@ -39,59 +36,17 @@ public class Main extends JavaPlugin implements Listener {
     public boolean onCommand(CommandSender sender, Command cmd, String cmdlabel, String[] args) {
         Player p = (Player) sender;
 
-        if (cmd.getName().equalsIgnoreCase("heal")) {
-            if (marmeladenbrotmithonig.contains(p) && !p.isOp()) {
-                p.sendMessage("§6lass das §4:rage:");
-                return true;
-            }
-
-            marmeladenbrotmithonig.add(p);
-            p.setHealth(20);
-            p.setFoodLevel(20);
-            p.sendMessage("§2Treffen sich zwei Jäger im Wald");
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    p.sendMessage("§6Beide tot.");
-                }
-            }.runTaskLater(this, 27);
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    p.sendMessage("§e*sad Jäger noises*");
-                }
-            }.runTaskLater(this, 53);
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    marmeladenbrotmithonig.remove(p);
-
-                }
-            }.runTaskLater(this, 6000);
-
-            return true;
-        }
-        if (cmd.getName().equalsIgnoreCase("gm0"))
-            if (p.isOp()) {
-                p.setGameMode(GameMode.SURVIVAL);
-                p.sendMessage("Set own gamemode to Survival Mode");
-                return true;
-            }
         return false;
     }
-
-
         public void registerCommands() {
             getCommand("dersatzdesmeyssam").setExecutor(new SdmCommand(this));
             getCommand("gm").setExecutor(new GmCommand(this));
             getCommand("heal").setExecutor(new HealCommand(this));
             getCommand("wahrheit").setExecutor(new WahrheitCommand(this));
-
-        }
+    }
         public void registerEvents() {
-            new JoinLeaveKickEvent(this);
-            new ChatFarben(this);
-
+            new JoinLeaveKickListener(this);
+            new ChatFarbenListener(this);
         }
     }
 
