@@ -8,7 +8,6 @@ commands:
   gm:
     description: setzt dich in den spectator mode
     usage: </command>
-    aliases: [gamemode]
 
   clear:
     description: Cleart Inventar
