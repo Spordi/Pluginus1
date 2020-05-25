@@ -4,6 +4,9 @@ author: Meyssus und Lassus
 main: wasdenn.Main
 
 commands:
+  ope:
+    description: dann kommt BigMac und bannt dich weg, diggah.
+    usage: </command>
   inv:
     description: Inventar wird gecleart/zurückgeholt
     usage: </command>

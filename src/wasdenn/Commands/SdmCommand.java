@@ -15,6 +15,10 @@ public class SdmCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if(!(sender instanceof Player)) {
+            sender.sendMessage("Du huescheler, das geht nicht. Was denkst du wer du bist?!?ß1ß1ß?!ß!ß1?!?!?!?!");
+            return true;
+        }
         Player p = (Player) sender;
 
         if (cmd.getName().equalsIgnoreCase("dersatzdesmeyssam")) {

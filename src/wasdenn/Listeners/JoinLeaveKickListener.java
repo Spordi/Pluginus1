@@ -34,13 +34,18 @@ public class JoinLeaveKickListener implements Listener {
     @EventHandler
     public void onKick(PlayerKickEvent e) {
         Player p = e.getPlayer();
-        if(p.isOp()) {
-            e.setLeaveMessage("§fLass das §4:rage:");
+        if(p.isBanned()){
+            e.setReason("§3BigMac hat dich weggebannt, diggah!");
+        return;
         }
-        else {
+        if(p.isOp()) {
             e.setLeaveMessage("§fdu Arschi §f:rage:");
         }
+        else {
+            e.setLeaveMessage("§fLass das §4:rage:");
+        }
     }
+
 
     //mallo Heyssam
 }

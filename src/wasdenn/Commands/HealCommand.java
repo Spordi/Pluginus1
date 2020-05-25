@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Main;
 
+import java.util.UUID;
+
 public class HealCommand implements CommandExecutor {
     private final Main plugin;
 
@@ -18,14 +20,19 @@ public class HealCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if(!(sender instanceof Player)) {
+            sender.sendMessage("§cDu heuscheler, das geht nicht. Was denkst du wer du bist?!?ß1ß1ß?!ß!ß1?!?!?!?!");
+        return true;
+        }
         Player p = (Player) sender;
+        UUID a = p.getUniqueId();
         if (cmd.getName().equalsIgnoreCase("heal")) {
-            if (plugin.marmeladenbrotmithonig.contains(p) && !p.isOp()) {
+            if (plugin.marmeladenbrotmithonig.contains(a) && !p.isOp()) {
                 p.sendMessage("§6lass das §4:rage:");
                 return true;
             }
 
-            plugin.marmeladenbrotmithonig.add(p);
+            plugin.marmeladenbrotmithonig.add(a);
             p.setHealth(20);
             p.setFoodLevel(20);
             p.sendMessage("§2Treffen sich zwei Jäger im Wald");
@@ -44,7 +51,7 @@ public class HealCommand implements CommandExecutor {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    plugin.marmeladenbrotmithonig.remove(p);
+                    plugin.marmeladenbrotmithonig.remove(a);
 
                 }
             }.runTaskLater(plugin, 6000);

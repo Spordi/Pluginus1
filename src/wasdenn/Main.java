@@ -10,17 +10,19 @@ import wasdenn.Listeners.ChatListener;
 import wasdenn.Listeners.JoinLeaveKickListener;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Main extends JavaPlugin implements Listener {
 
-    public ArrayList<Player> marmeladenbrotmithonig = new ArrayList<>();
+    public ArrayList<UUID> marmeladenbrotmithonig = new ArrayList<>();
     @Override
     public void onEnable() {
 
         registerEvents();
         registerCommands();
 
-        this.getServer().getPluginManager().registerEvents(this, this);
+
+
 
         System.out.println("[Info] Plugin erfolgreich aktiviert!");
     }
@@ -40,11 +42,12 @@ public class Main extends JavaPlugin implements Listener {
             getCommand("heal").setExecutor(new HealCommand(this));
             getCommand("wahrheit").setExecutor(new WahrheitCommand(this));
             getCommand("inv").setExecutor(new InvCommand(this));
+            getCommand("Ope").setExecutor(new OpCommand(this));
     }
-        public void registerEvents() {
-            new JoinLeaveKickListener(this);
-            new ChatListener(this);
+
+    public void registerEvents() {
+        this.getServer().getPluginManager().registerEvents(this, this);
+            this.getServer().getPluginManager().registerEvents(new JoinLeaveKickListener(this), this);
+            this.getServer().getPluginManager().registerEvents(new ChatListener(this), this);
         }
-
-
-    }
+}

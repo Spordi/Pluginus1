@@ -19,7 +19,10 @@ public class InvCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String labels, String[] args) {
-
+        if(!(sender instanceof Player)) {
+            sender.sendMessage("Du huescheler, das geht nicht. Was denkst du wer du bist?!?ß1ß1ß?!ß!ß1?!?!?!?!");
+            return true;
+        }
         Player p = (Player) sender;
         if (args[0].equalsIgnoreCase("weg")) {
             p.sendMessage("Dein Inventar wurde verstaut.");
