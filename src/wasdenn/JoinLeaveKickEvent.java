@@ -37,7 +37,7 @@ public class JoinLeaveKickEvent implements Listener {
             e.setLeaveMessage("§fLass das §4:rage:");
         }
         else {
-            e.setLeaveMessage("§f du Arschi §f:rage:");
+            e.setLeaveMessage("§fdu Arschi §f:rage:");
         }
     }
 
