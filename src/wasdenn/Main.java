@@ -156,6 +156,7 @@ public class Main extends JavaPlugin implements Listener {
         String message = e.getMessage();
         if(p.isOp()) e.setMessage("§3" + message);
     }
+    //ur mom has big gay
 }
 
 
