@@ -19,6 +19,9 @@ public class JoinLeaveKickListener implements Listener {
         if (p.isOp()) {
             e.setJoinMessage("§4" + p.getName() + " §bist dem Spiel beigetreten");
         } else {
+            if(plugin.isWartung) {
+                p.kickPlayer("§cDer Server befindet sich im Wartungsmodus! Warte bis die Arbeiten abgeschlossen sind.");
+            }
             e.setJoinMessage("§b" + p.getName() + " §3ist schwul");
         }
     }
