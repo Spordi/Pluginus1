@@ -61,7 +61,6 @@ public class Main extends JavaPlugin implements Listener {
 
 
     public void registerEvents()  {
-            ///getServer().getPluginManager().registerEvents(this, this);
             getServer().getPluginManager().registerEvents(new JoinLeaveKickListener(this), this);
             getServer().getPluginManager().registerEvents(new ChatListener(this), this);
             getServer().getPluginManager().registerEvents(new InteractListener(this), this);
