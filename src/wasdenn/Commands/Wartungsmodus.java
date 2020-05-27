@@ -27,7 +27,11 @@ public class Wartungsmodus implements CommandExecutor {
             plugin.isWartung = true;
             sender.sendMessage("§aDer Server befindet sich jetzt im Wartungsmodus!");
             Bukkit.broadcastMessage("§e" + sender.getName() + " §ahat den Server in den Wartungsmodus gesetzt");
-            Bukkit.getOnlinePlayers().forEach(player -> player.kickPlayer("§cDer Server wird derzeit gewartet! Schau doch später wieder vorbei."));
+            Bukkit.getOnlinePlayers().forEach(player -> {
+                if(!player.isOp()) {
+                    player.kickPlayer("§cDer Server wird derzeit gewartet! Schau doch später wieder vorbei.");
+                }
+            });
         } else {
             plugin.isWartung = false;
             sender.sendMessage("§aDer Server befindet sich jetzt nicht mehr im Wartungsmodus!");

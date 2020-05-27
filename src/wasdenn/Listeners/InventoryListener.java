@@ -15,7 +15,6 @@ public class InventoryListener implements Listener {
 
     public InventoryListener(Main main) {
         this.plugin = main;
-        this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
