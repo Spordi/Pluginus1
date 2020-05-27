@@ -37,7 +37,7 @@ public class Main extends JavaPlugin implements Listener {
                     Bukkit.getOnlinePlayers().forEach(player -> player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new ComponentBuilder("§cDer Wartungsmodus ist derzeit aktiviert").create()));
                 }
             }
-        }.runTaskLater(this, 20);
+        }.runTaskTimer(this, 20, 40);
     }
 
     @Override
