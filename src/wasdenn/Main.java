@@ -9,12 +9,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Commands.*;
 import wasdenn.Listeners.*;
+import wasdenn.Utils.FileManager;
 
 import java.util.HashMap;
 import java.util.UUID;
 
 public class Main extends JavaPlugin implements Listener {
     public Inventory Inv = null;
+    public FileManager fm;
 
     public HashMap<UUID, Integer> marmeladenbrotmithonig = new HashMap<>();
     public boolean isWartung = false;
@@ -22,6 +24,7 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
 
+        fm = new FileManager(this);
         registerEvents();
         registerCommands();
         System.out.println("[Info] Plugin erfolgreich aktiviert!");
