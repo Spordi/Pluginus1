@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import wasdenn.Commands.*;
 import wasdenn.Listeners.ChatListener;
 import wasdenn.Listeners.InteractListener;
+import wasdenn.Listeners.InventoryListener;
 import wasdenn.Listeners.JoinLeaveKickListener;
 
 import java.util.HashMap;
@@ -46,7 +47,7 @@ public class Main extends JavaPlugin implements Listener {
             this.getServer().getPluginManager().registerEvents(new JoinLeaveKickListener(this), this);
             this.getServer().getPluginManager().registerEvents(new ChatListener(this), this);
             this.getServer().getPluginManager().registerEvents(new InteractListener(this), this);
-            //this.getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
+            this.getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
             }
 
 

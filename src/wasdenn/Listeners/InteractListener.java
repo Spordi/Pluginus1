@@ -35,19 +35,17 @@ public class InteractListener implements Listener {
                 for(Player players : Bukkit.getOnlinePlayers()) {
                     if(hidden.contains(p.getName())) {
                         hidden.remove(p.getName());
-                        p.showPlayer(players);
+                        p.showPlayer(plugin, players);
                         p.sendMessage("§aSichtbar");
                     } else
                         if(!hidden.contains(p.getName())) {
                             hidden.add(p.getName());
-                            p.hidePlayer(players);
+                            p.hidePlayer(plugin, players);
                             p.sendMessage("§aUnsichtbar");
                         }
                 }
             }else if(e.getMaterial().equals(Material.COMPASS)) {
-                p.sendMessage("test2");
                 plugin.Inv = p.getServer().createInventory(null, 9, "§b" + p.getName() + "'s Kompass");
-
                 ItemStack item = new ItemStack(Material.STONE);
                 ItemMeta meta = item.getItemMeta();
                 meta.setDisplayName("§6Peletorter");
