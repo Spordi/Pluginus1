@@ -10,7 +10,6 @@ import wasdenn.Listeners.JoinLeaveKickListener;
 import wasdenn.Listeners.PingListener;
 
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.UUID;
 
 public class Main extends JavaPlugin implements Listener {
@@ -42,17 +41,25 @@ public class Main extends JavaPlugin implements Listener {
             getCommand("wahrheit").setExecutor(new WahrheitCommand(this));
             getCommand("inv").setExecutor(new InvCommand(this));
             getCommand("Ope").setExecutor(new OpCommand(this));
-            Objects.requireNonNull(getCommand("Back")).setExecutor(new BackCommand(this));
+            getCommand("Back").setExecutor(new BackCommand(this)); }
             getCommand("wartung").setExecutor(new Wartungsmodus(this));
     }
 
 
     public void registerEvents()  {
+<<<<<<< HEAD
+            //getServer().getPluginManager().registerEvents(this, this);
+            getServer().getPluginManager().registerEvents(new JoinLeaveKickListener(this), this);
+            getServer().getPluginManager().registerEvents(new ChatListener(this), this);
+            getServer().getPluginManager().registerEvents(new InteractListener(this), this);
+            getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
+            getServer().getPluginManager().registerEvents(new PingListener(this), this);
+=======
             this.getServer().getPluginManager().registerEvents(this, this);
             this.getServer().getPluginManager().registerEvents(new JoinLeaveKickListener(this), this);
             this.getServer().getPluginManager().registerEvents(new ChatListener(this), this);
             this.getServer().getPluginManager().registerEvents(new InteractListener(this), this);
-            getServer().getPluginManager().registerEvents(new PingListener(this), this);
+>>>>>>> parent of 7338c76... Fix und Peletorter glitch weg
             //this.getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
             }
 
