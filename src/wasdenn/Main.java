@@ -4,10 +4,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import wasdenn.Commands.*;
-import wasdenn.Listeners.ChatListener;
-import wasdenn.Listeners.InteractListener;
-import wasdenn.Listeners.JoinLeaveKickListener;
-import wasdenn.Listeners.PingListener;
+import wasdenn.Listeners.*;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -41,26 +38,18 @@ public class Main extends JavaPlugin implements Listener {
             getCommand("wahrheit").setExecutor(new WahrheitCommand(this));
             getCommand("inv").setExecutor(new InvCommand(this));
             getCommand("Ope").setExecutor(new OpCommand(this));
-            getCommand("Back").setExecutor(new BackCommand(this)); }
+            getCommand("Back").setExecutor(new BackCommand(this));
             getCommand("wartung").setExecutor(new Wartungsmodus(this));
     }
 
 
     public void registerEvents()  {
-<<<<<<< HEAD
             //getServer().getPluginManager().registerEvents(this, this);
             getServer().getPluginManager().registerEvents(new JoinLeaveKickListener(this), this);
             getServer().getPluginManager().registerEvents(new ChatListener(this), this);
             getServer().getPluginManager().registerEvents(new InteractListener(this), this);
             getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
             getServer().getPluginManager().registerEvents(new PingListener(this), this);
-=======
-            this.getServer().getPluginManager().registerEvents(this, this);
-            this.getServer().getPluginManager().registerEvents(new JoinLeaveKickListener(this), this);
-            this.getServer().getPluginManager().registerEvents(new ChatListener(this), this);
-            this.getServer().getPluginManager().registerEvents(new InteractListener(this), this);
->>>>>>> parent of 7338c76... Fix und Peletorter glitch weg
-            //this.getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
             }
 
 
