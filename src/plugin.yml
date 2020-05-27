@@ -4,8 +4,6 @@ author: Meyssus und Lassus
 main: wasdenn.Main
 
 commands:
-
-
   back:
     description: Dahin wo du nach 5 Sekunden gewesen bist.
     usage: </command>
@@ -37,3 +35,7 @@ commands:
   reset:
     description: Hi
     usage: </reset>
+
+  wartung:
+    description: Setzt den Server in den Wartungsmodus (und umgekehrt)
+    usage: </wartung>
