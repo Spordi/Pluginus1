@@ -1,9 +1,13 @@
 name: Pluginus1
-version: die einzig wahre
-author: Meyssus und Lassus
+version: π
+api-version: 1.15
+authors: [Meyssus, Lassus]
 main: wasdenn.Main
 
 commands:
+  setpos:
+    description: Speichert die Position unter dem Namen, den du ihr gibst.
+    usage: </setpos>
   back:
     description: Dahin wo du nach 5 Sekunden gewesen bist.
     usage: </command>

@@ -24,7 +24,7 @@ public class TpInvListener implements Listener {
 
         ItemStack item = new ItemStack(Material.COMPASS);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName("§dTeleporter");
+        meta.setDisplayName("§dPeletorter");
 
         p.getInventory().setItem(4, item);
 

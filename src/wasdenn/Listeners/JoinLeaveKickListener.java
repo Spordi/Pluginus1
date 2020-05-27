@@ -1,14 +1,14 @@
 package wasdenn.Listeners;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Main;
+import wasdenn.Utils.Utils;
 
 public class JoinLeaveKickListener implements Listener {
     private final Main plugin;
@@ -21,8 +21,18 @@ public class JoinLeaveKickListener implements Listener {
         if (p.isOp()) {
             e.setJoinMessage("§4" + p.getName() + " §bist dem Spiel beigetreten");
         } else {
+
+
             p.getInventory().clear();
-            p.getInventory().setItem(4, new ItemStack(Material.COMPASS));
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    p.getInventory().setItem(4, Utils.kompass());
+                    p.updateInventory();
+                }
+            }.runTaskLater(plugin, 10);
+
+            p.teleport(plugin.fm.getLocation("lobby"));
             if(plugin.isWartung) {
                 p.kickPlayer("§cDer Server befindet sich im Wartungsmodus! Warte bis die Arbeiten abgeschlossen sind.");
             }

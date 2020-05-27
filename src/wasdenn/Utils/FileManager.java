@@ -15,11 +15,13 @@ import java.io.IOException;
 public class FileManager {
 
     private Main plugin = null;
-    public File file = new File(plugin.getDataFolder(), "locations.yml");
-    public FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
+    public File file;
+    public FileConfiguration cfg;
 
     public FileManager(Main main) {
         this.plugin = main;
+        file = new File(plugin.getDataFolder(), "locations.yml");
+        cfg = YamlConfiguration.loadConfiguration(file);
     }
 
     public void setLocation(String name, Location loc) {
