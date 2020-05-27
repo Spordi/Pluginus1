@@ -66,7 +66,8 @@ public class Main extends JavaPlugin implements Listener {
             getServer().getPluginManager().registerEvents(new InteractListener(this), this);
             getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
             getServer().getPluginManager().registerEvents(new PingListener(this), this);
-        getServer().getPluginManager().registerEvents(new KeinSchadenInLobbyListener(this), this);
+            getServer().getPluginManager().registerEvents(new KeinSchadenInLobbyListener(this), this);
+        getServer().getPluginManager().registerEvents(new TpInvListener(this), this);
             }
 
 
