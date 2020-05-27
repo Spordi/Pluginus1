@@ -4,16 +4,23 @@ author: Meyssus und Lassus
 main: wasdenn.Main
 
 commands:
+
+
+  back:
+    description: Dahin wo du nach 5 Sekunden gewesen bist.
+    usage: </command>
+
   ope:
     description: dann kommt BigMac und bannt dich weg, diggah.
     usage: </command>
+
   inv:
     description: Inventar wird gecleart/zurückgeholt
     usage: </command>
+
   gm:
     description: setzt dich in den spectator mode
     usage: </command>
-
 
   dersatzdesmeyssam:
     description: Meyssam hat immer Recht
