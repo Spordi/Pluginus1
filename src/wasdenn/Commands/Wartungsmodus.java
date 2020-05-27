@@ -1,5 +1,6 @@
 package wasdenn.Commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -25,9 +26,12 @@ public class Wartungsmodus implements CommandExecutor {
         if(!plugin.isWartung) {
             plugin.isWartung = true;
             sender.sendMessage("§aDer Server befindet sich jetzt im Wartungsmodus!");
+            Bukkit.broadcastMessage("§e" + sender.getName() + " §ahat den Server in den Wartungsmodus gesetzt");
+            Bukkit.getOnlinePlayers().forEach(player -> player.kickPlayer("§cDer Server wird derzeit gewartet! Schau doch später wieder vorbei."));
         } else {
             plugin.isWartung = false;
             sender.sendMessage("§aDer Server befindet sich jetzt nicht mehr im Wartungsmodus!");
+            Bukkit.broadcastMessage("§e" + sender.getName() + " §chat den Wartungsmodus deaktiviert");
         }
         return true;
     }
