@@ -22,7 +22,6 @@ public class InteractListener implements Listener {
 
     public InteractListener(Main main) {
         this.plugin = main;
-        this.plugin.getServer().getPluginManager().registerEvents(this, plugin);
             }
 
     @EventHandler
@@ -35,12 +34,12 @@ public class InteractListener implements Listener {
                 for(Player players : Bukkit.getOnlinePlayers()) {
                     if(hidden.contains(p.getName())) {
                         hidden.remove(p.getName());
-                        p.showPlayer(players);
+                        p.showPlayer(plugin, players);
                         p.sendMessage("§aSichtbar");
                     } else
                         if(!hidden.contains(p.getName())) {
                             hidden.add(p.getName());
-                            p.hidePlayer(players);
+                            p.hidePlayer(plugin, players);
                             p.sendMessage("§aUnsichtbar");
                         }
                 }
