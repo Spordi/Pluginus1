@@ -52,7 +52,6 @@ public class InteractListener implements Listener {
                 ItemMeta meta = item.getItemMeta();
                 meta.setDisplayName("§6Peletorter");
                 item.setItemMeta(meta);
-
                 plugin.Inv.setItem(4, item);
 
                 p.openInventory(plugin.Inv);

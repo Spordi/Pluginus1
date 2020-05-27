@@ -9,7 +9,6 @@ import wasdenn.Listeners.InteractListener;
 import wasdenn.Listeners.JoinLeaveKickListener;
 
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.UUID;
 
 public class Main extends JavaPlugin implements Listener {
@@ -39,7 +38,7 @@ public class Main extends JavaPlugin implements Listener {
             getCommand("wahrheit").setExecutor(new WahrheitCommand(this));
             getCommand("inv").setExecutor(new InvCommand(this));
             getCommand("Ope").setExecutor(new OpCommand(this));
-            Objects.requireNonNull(getCommand("Back")).setExecutor(new BackCommand(this)); }
+            getCommand("Back").setExecutor(new BackCommand(this)); }
 
 
     public void registerEvents()  {
