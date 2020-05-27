@@ -21,15 +21,18 @@ public class InventoryListener implements Listener {
     public void onInvClick(InventoryClickEvent e) {
         Player p = (Player) e.getWhoClicked();
 
-        if (e.getInventory().getName().equalsIgnoreCase("§b" + p.getName() + "'s Kompass")) {
-            e.setCancelled(true);
+        if(e.getView().getTitle().equalsIgnoreCase("§b" + p.getName() + "'s Kompass")) {
+
             if(e.getCurrentItem().getType() == Material.STONE) {
                 p.sendMessage("§6Hmm, yes. The floor is made of floor.");
-                p.getInventory().addItem(new ItemStack(Material.STONE, 32, 0,));
+
                 ItemStack item = new ItemStack(Material.STONE);
                 ItemMeta meta = item.getItemMeta();
                 meta.setDisplayName("Floor, hmm");
+                item.setItemMeta(meta);
+                p.getInventory().addItem(item);
             }
+            e.setCancelled(true);
         }
     }
 }
