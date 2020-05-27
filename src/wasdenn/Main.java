@@ -1,8 +1,12 @@
 package wasdenn;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Commands.*;
 import wasdenn.Listeners.*;
 
@@ -20,9 +24,22 @@ public class Main extends JavaPlugin implements Listener {
 
         registerEvents();
         registerCommands();
-
         System.out.println("[Info] Plugin erfolgreich aktiviert!");
+
+        sendTitle();
     }
+
+    private void sendTitle() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if(isWartung) {
+                    Bukkit.getOnlinePlayers().forEach(player -> player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new ComponentBuilder("§cDer Wartungsmodus ist derzeit aktiviert").create()));
+                }
+            }
+        }.runTaskLater(this, 20);
+    }
+
     @Override
     public void onDisable() {
         System.out.println("[Info] Plugin erfolgreich deaktiviert!");
