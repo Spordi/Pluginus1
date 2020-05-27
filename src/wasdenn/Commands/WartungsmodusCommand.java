@@ -9,11 +9,11 @@ import wasdenn.Main;
 /**
  * Created by Meyssam Saghiri on Mai 27, 2020
  */
-public class Wartungsmodus implements CommandExecutor {
+public class WartungsmodusCommand implements CommandExecutor {
 
     private Main plugin;
 
-    public Wartungsmodus(Main main) {
+    public WartungsmodusCommand(Main main) {
         this.plugin = main;
     }
 

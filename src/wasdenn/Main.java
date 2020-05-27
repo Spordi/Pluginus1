@@ -16,15 +16,13 @@ import java.util.UUID;
 
 public class Main extends JavaPlugin implements Listener {
     public Inventory Inv = null;
-    public FileManager fm;
+    public FileManager fm = new FileManager(this);
 
     public HashMap<UUID, Integer> marmeladenbrotmithonig = new HashMap<>();
     public boolean isWartung = false;
 
     @Override
     public void onEnable() {
-
-        fm = new FileManager(this);
         registerEvents();
         registerCommands();
         System.out.println("[Info] Plugin erfolgreich aktiviert!");
@@ -59,7 +57,8 @@ public class Main extends JavaPlugin implements Listener {
             getCommand("inv").setExecutor(new InvCommand(this));
             getCommand("Ope").setExecutor(new OpCommand(this));
             getCommand("Back").setExecutor(new BackCommand(this));
-            getCommand("wartung").setExecutor(new Wartungsmodus(this));
+            getCommand("wartung").setExecutor(new WartungsmodusCommand(this));
+            getCommand("setpos").setExecutor( new SetPosCommand(this));
     }
 
 
