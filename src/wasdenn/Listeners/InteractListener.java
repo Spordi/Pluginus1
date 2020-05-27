@@ -22,7 +22,8 @@ public class InteractListener implements Listener {
 
     public InteractListener(Main main) {
         this.plugin = main;
-            }
+        }
+           
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
@@ -44,7 +45,6 @@ public class InteractListener implements Listener {
                         }
                 }
             }else if(e.getMaterial().equals(Material.COMPASS)) {
-                p.sendMessage("test2");
                 plugin.Inv = p.getServer().createInventory(null, 9, "§b" + p.getName() + "'s Kompass");
 
                 ItemStack item = new ItemStack(Material.STONE);

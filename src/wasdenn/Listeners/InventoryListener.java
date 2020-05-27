@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import wasdenn.Main;
@@ -29,11 +30,27 @@ public class InventoryListener implements Listener {
                 ItemMeta meta = item.getItemMeta();
                 meta.setDisplayName("Floor, hmm");
                 item.setItemMeta(meta);
-
-
                 p.getInventory().addItem(item);
             }
             e.setCancelled(true);
         }
+    }
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent e) {
+        Player p = (Player) e.getWhoClicked();
+        if(!p.isOp()){
+            if(e.getClickedInventory().getType() == InventoryType.PLAYER) {
+                if (p.getWorld().getName().equalsIgnoreCase("world")) {
+                e.setCancelled(true);
+                }
+            }
+        }
+
+
+
+
+
+
+
     }
 }
