@@ -30,6 +30,8 @@ public class InventoryListener implements Listener {
                 ItemMeta meta = item.getItemMeta();
                 meta.setDisplayName("Floor, hmm");
                 item.setItemMeta(meta);
+
+
                 p.getInventory().addItem(item);
             }
             e.setCancelled(true);
