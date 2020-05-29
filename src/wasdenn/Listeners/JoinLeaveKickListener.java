@@ -66,6 +66,7 @@ public class JoinLeaveKickListener implements Listener {
             @Override
             public void run() {
                 p.getInventory().setItem(4, Utils.kompass());
+                p.getInventory().setItem(2, Utils.netherstar());
                 p.updateInventory();
             }
         }.runTaskLater(plugin, 10);

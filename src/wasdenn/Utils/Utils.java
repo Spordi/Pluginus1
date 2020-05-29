@@ -12,4 +12,11 @@ public class Utils {
         item.setItemMeta(meta);
         return item;
     }
+    public static ItemStack netherstar() {
+        ItemStack item = new ItemStack(Material.NETHER_STAR);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName("§6Jetzt bin ich weg, und jetzt bin ich wieder da. Und jetzt bin ich wieder weg. :/");
+        item.setItemMeta(meta);
+        return item;
+    }
 }
