@@ -10,6 +10,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Commands.*;
 import wasdenn.Listeners.*;
 import wasdenn.Utils.FileManager;
+import wasdenn.gungame.utils.GGInitialize;
+import wasdenn.gungame.utils.GGState;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -17,6 +19,7 @@ import java.util.UUID;
 public class Main extends JavaPlugin implements Listener {
     public Inventory Inv = null;
     public FileManager fm = new FileManager(this);
+    public static GGState ggState;
 
     public HashMap<UUID, Integer> marmeladenbrotmithonig = new HashMap<>();
     public boolean isWartung = false;
@@ -25,6 +28,7 @@ public class Main extends JavaPlugin implements Listener {
     public void onEnable() {
         registerEvents();
         registerCommands();
+        GGInitialize.initialize(this);
         System.out.println("[Info] Plugin erfolgreich aktiviert!");
 
         sendTitle();
@@ -69,8 +73,8 @@ public class Main extends JavaPlugin implements Listener {
             getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
             getServer().getPluginManager().registerEvents(new PingListener(this), this);
             getServer().getPluginManager().registerEvents(new KeinSchadenInLobbyListener(this), this);
-        getServer().getPluginManager().registerEvents(new TpInvListener(this), this);
+            getServer().getPluginManager().registerEvents(new TpInvListener(this), this);
             }
 
 
-        }
+}
