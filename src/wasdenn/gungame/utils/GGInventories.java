@@ -1,6 +1,7 @@
 package wasdenn.gungame.utils;
 
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -31,6 +32,8 @@ public class GGInventories {
         ItemStack gs = new ItemStack(Material.BOW);
         ItemStack arrow = new ItemStack(Material.ARROW);
         ItemMeta meta = gs.getItemMeta();
+        meta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
+        gs.setItemMeta(meta);
         ItemStack[] stack = {gs, arrow};
         return stack;
     }
