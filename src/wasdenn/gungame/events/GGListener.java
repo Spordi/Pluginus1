@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import wasdenn.Main;
+import wasdenn.Utils.Utils;
 import wasdenn.gungame.utils.GGMain;
 import wasdenn.gungame.utils.GGState;
 
@@ -44,7 +45,8 @@ public class GGListener implements Listener {
         GGMain.sendToWorld("§e" + p.getName() + " §ahat das Spiel betreten");
         if(Main.ggState == GGState.LOBBY) {
             p.teleport(plugin.fm.getLocation("gungame.lobby"));
-            p.getInventory().clear();
+                    p.getInventory().clear();
+                    p.getInventory().setItem(8, Utils.hubBett());
             if(!GGMain.counterStarted && GGMain.countPeople() > 1) {
                 GGMain.startCounter(plugin);
             }

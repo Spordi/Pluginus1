@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import wasdenn.Main;
+import wasdenn.Utils.Utils;
 
 public class HubCommand implements CommandExecutor {
     private final Main plugin;
@@ -15,7 +16,7 @@ public class HubCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
         if(cmd.getName().equalsIgnoreCase("hub")) {
-            p.teleport(plugin.fm.getLocation("lobby"));
+            Utils.lobbyteleport(plugin, p);
         }
 
 

@@ -10,6 +10,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import wasdenn.Main;
+import wasdenn.Utils.Utils;
+import wasdenn.gungame.utils.GGMain;
 
 import java.util.ArrayList;
 
@@ -42,7 +44,12 @@ public class InteractListener implements Listener {
                             p.sendMessage("§aUnsichtbar");
                         }
                 }
-            }else if(e.getMaterial().equals(Material.COMPASS)) {
+            }else if(e.getMaterial().equals(Material.RED_BED)) {
+                if(GGMain.isWorld(p.getWorld())) {
+                    Utils.lobbyteleport(plugin, p);
+                }
+            }
+                else if(e.getMaterial().equals(Material.COMPASS)) {
                 plugin.Inv = p.getServer().createInventory(null, 9, "§6" + p.getName() + "'s Peletorter");
 
                 ItemStack gungameportStack = new ItemStack(Material.WOODEN_AXE);

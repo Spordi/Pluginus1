@@ -8,7 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Main;
 import wasdenn.Utils.Utils;
 import wasdenn.gungame.events.GGJoinEvent;
@@ -26,7 +25,7 @@ public class JoinLeaveKickListener implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(1024);
-        initialize(p); //NEU erklär ich dir später
+        Utils.lobbyteleport (plugin, p); //NEU erklär ich dir später
         if (p.isOp()) {
             e.setJoinMessage("§4" + p.getName() + " §bist dem Spiel beigetreten");
         } else {
@@ -72,18 +71,18 @@ public class JoinLeaveKickListener implements Listener {
     Eigene Funktionen
      */
 
-    private void initialize(Player p) {
-        p.getInventory().clear();
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                p.getInventory().setItem(4, Utils.kompass());
-                p.getInventory().setItem(2, Utils.netherstar());
-                p.updateInventory();
-            }
-        }.runTaskLater(plugin, 10);
-
-        p.teleport(plugin.fm.getLocation("lobby"));
-    }
+    //public static void initialize(Main plugin, Player p) {
+    //    p.getInventory().clear();
+    //    new BukkitRunnable() {
+    //        @Override
+    //        public void run() {
+    //            p.getInventory().setItem(4, Utils.kompass());
+    //            p.getInventory().setItem(2, Utils.netherstar());
+    //            p.updateInventory();
+    //        }
+    //    }.runTaskLater(plugin, 10);
+//
+    //    p.teleport(plugin.fm.getLocation("lobby"));
+    //}
 
 }
