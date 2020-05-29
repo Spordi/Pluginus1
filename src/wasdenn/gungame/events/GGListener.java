@@ -132,6 +132,9 @@ public class GGListener implements Listener {
         p.setHealth(20);
         killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 30, 3));
         GGMain.updateInventory(p);
+        if(GGMain.level.get(killer) == 6) {
+            GGMain.endGame(plugin, killer);
+        }
     }
 
 }

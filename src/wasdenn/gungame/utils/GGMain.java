@@ -5,6 +5,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Main;
+import wasdenn.Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class GGMain {
 
     public static void startCounter(Main main) {
         counterStarted = true;
+        counter = 60;
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -55,9 +57,9 @@ public class GGMain {
     }
 
     public static void startGame(Main main) {
+        counter = 10;
         counterStarted = false;
         Main.ggState = GGState.INGAME;
-        counter = 60;
         int i = 1;
         sendToWorld("§aDas Spiel startet!");
         for(Player player : world.getPlayers()) {
@@ -91,4 +93,23 @@ public class GGMain {
         }
     }
 
+    public static void endGame(Main plugin, Player winner) {
+        world.getPlayers().forEach(player -> player.sendTitle("§e" + winner.getName(), "§ahat das Spiel gewonnen!", 10, 60, 10));
+        Main.ggState = GGState.END;
+        level.clear();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if(counter > 0) {
+                    if(counter == 10 || counter < 6) sendToWorld("§cDie Lobby schließt in §e" + counter + " §cSekunden");
+                    counter--;
+                } else {
+                    Main.ggState = GGState.LOBBY;
+                    world.getPlayers().forEach(player -> Utils.lobbyteleport(plugin, player));
+                    cancel();
+                }
+            }
+        }.runTaskTimer(plugin, 0, 20);
+    }
+    
 }
