@@ -1,6 +1,7 @@
 package wasdenn.gungame.events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -102,23 +103,33 @@ public class GGListener implements Listener {
         if (e.getEntity() instanceof Player && Main.ggState == GGState.INGAME) {
             Player p = (Player) e.getEntity();
             if (GGMain.isWorld(p.getWorld())) {
-                Player killer = (Player) e.getDamager();
+                Player killer;
+                if(e.getDamager() instanceof Arrow) {
+                    Arrow arrow = (Arrow) e.getDamager();
+                    killer = (Player) arrow.getShooter();
+                }else {
+                    killer = (Player) e.getDamager();
+                }
                 if (p.getHealth() <= e.getDamage()) {
                     e.setCancelled(true);
-                    GGMain.level.replace(killer, GGMain.level.get(killer) + 1);
-                    int i = GGMain.level.get(p);
-                    if (i > 1) GGMain.level.replace(p, i - 1);
-                    GGMain.updateInventory(killer);
-                    Random random = new Random();
-                    int rdm = random.nextInt(7) + 1;
-                    GGMain.sendToWorld("§e" + p.getName() + " §cwurde von §e" + killer.getName() + " §cgetötet");
-                    p.teleport(plugin.fm.getLocation("gungame.spawn." + rdm));
-                    p.setHealth(20);
-                    killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5, 3));
-                    GGMain.updateInventory(p);
+                    onKill(p, killer);
                 }
             }
         }
+    }
+
+    public void onKill(Player p, Player killer) {
+        GGMain.level.replace(killer, GGMain.level.get(killer) + 1);
+        int i = GGMain.level.get(p);
+        if (i > 1) GGMain.level.replace(p, i - 1);
+        GGMain.updateInventory(killer);
+        Random random = new Random();
+        int rdm = random.nextInt(7) + 1;
+        GGMain.sendToWorld("§e" + p.getName() + " §cwurde von §e" + killer.getName() + " §cgetötet");
+        p.teleport(plugin.fm.getLocation("gungame.spawn." + rdm));
+        p.setHealth(20);
+        killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5, 3));
+        GGMain.updateInventory(p);
     }
 
 }
