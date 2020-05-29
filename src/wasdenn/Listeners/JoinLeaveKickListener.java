@@ -1,5 +1,6 @@
 package wasdenn.Listeners;
 
+import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,6 +11,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Main;
 import wasdenn.Utils.Utils;
+import wasdenn.gungame.events.GGJoinEvent;
+import wasdenn.gungame.events.GGLeaveEvent;
+import wasdenn.gungame.utils.GGMain;
 
 public class JoinLeaveKickListener implements Listener {
 
@@ -31,6 +35,9 @@ public class JoinLeaveKickListener implements Listener {
             }
             e.setJoinMessage("§b" + p.getName() + " §3ist schwul");
         }
+        if(GGMain.isWorld(p.getWorld())) {
+            Bukkit.getPluginManager().callEvent(new GGJoinEvent(p, null, p.getWorld()));
+        }
     }
 
     @EventHandler
@@ -40,6 +47,9 @@ public class JoinLeaveKickListener implements Listener {
             e.setQuitMessage("§bTschuessi §4" + p.getName() + " §b:^)");
         } else {
             e.setQuitMessage("§b" + p.getName() + " §3hat das Spiel verlassen");
+        }
+        if(GGMain.isWorld(p.getWorld())) {
+            Bukkit.getPluginManager().callEvent(new GGLeaveEvent(p, null, p.getWorld()));
         }
     }
 
