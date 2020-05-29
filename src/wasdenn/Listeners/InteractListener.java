@@ -31,14 +31,12 @@ public class InteractListener implements Listener {
 
         if(e.getAction() == Action.RIGHT_CLICK_AIR | e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if(e.getMaterial().equals(Material.NETHER_STAR)) {
-                p.sendMessage("test");
                 for(Player players : Bukkit.getOnlinePlayers()) {
                     if(hidden.contains(p.getName())) {
                         hidden.remove(p.getName());
                         p.showPlayer(plugin, players);
                         p.sendMessage("§aSichtbar");
-                    } else
-                        if(!hidden.contains(p.getName())) {
+                    } else if(!hidden.contains(p.getName())) {
                             hidden.add(p.getName());
                             p.hidePlayer(plugin, players);
                             p.sendMessage("§aUnsichtbar");
