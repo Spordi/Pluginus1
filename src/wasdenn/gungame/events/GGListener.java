@@ -128,7 +128,7 @@ public class GGListener implements Listener {
         GGMain.sendToWorld("§e" + p.getName() + " §cwurde von §e" + killer.getName() + " §cgetötet");
         p.teleport(plugin.fm.getLocation("gungame.spawn." + rdm));
         p.setHealth(20);
-        killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5, 3));
+        killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 30, 3));
         GGMain.updateInventory(p);
     }
 
