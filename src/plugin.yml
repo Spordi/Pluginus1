@@ -5,6 +5,9 @@ authors: [Meyssus, Lassus]
 main: wasdenn.Main
 
 commands:
+  hub:
+    description: In die Lobby zurück Teleportieren.
+    usage: </hub>
   setpos:
     description: Speichert die Position unter dem Namen, den du ihr gibst.
     usage: </setpos>

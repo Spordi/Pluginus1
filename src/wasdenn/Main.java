@@ -65,6 +65,7 @@ public class Main extends JavaPlugin implements Listener {
             getCommand("Back").setExecutor(new BackCommand(this));
             getCommand("wartung").setExecutor(new WartungsmodusCommand(this));
             getCommand("setpos").setExecutor( new SetPosCommand(this));
+            getCommand("hub").setExecutor(new HubCommand(this));
     }
 
 

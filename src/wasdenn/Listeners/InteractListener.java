@@ -47,17 +47,23 @@ public class InteractListener implements Listener {
             }else if(e.getMaterial().equals(Material.COMPASS)) {
                 plugin.Inv = p.getServer().createInventory(null, 9, "§6" + p.getName() + "'s Peletorter");
 
+                ItemStack gungameportStack = new ItemStack(Material.WOODEN_AXE);
+                ItemMeta gungameportmeta = gungameportStack.getItemMeta();
+                gungameportmeta.setDisplayName("§6GunGame");
+                gungameportStack.setItemMeta(gungameportmeta);
+                plugin.Inv.setItem(1, gungameportStack);
+
                 ItemStack inselportStack = new ItemStack(Material.SAND);
                 ItemMeta inselportmeta = inselportStack.getItemMeta();
                 inselportmeta.setDisplayName("§6Insel");
                 inselportStack.setItemMeta(inselportmeta);
-                plugin.Inv.setItem(6, inselportStack);
+                plugin.Inv.setItem(7, inselportStack);
 
                 ItemStack lobbyportStack = new ItemStack(Material.FIRE_CHARGE);
                 ItemMeta lobbyportmeta = lobbyportStack.getItemMeta();
                 lobbyportmeta.setDisplayName("§6Lobby");
                 lobbyportStack.setItemMeta(lobbyportmeta);
-                plugin.Inv.setItem(2, lobbyportStack);
+                plugin.Inv.setItem(4, lobbyportStack);
 
                 p.openInventory(plugin.Inv);
             }

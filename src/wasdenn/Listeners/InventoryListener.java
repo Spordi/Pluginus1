@@ -22,11 +22,15 @@ public class InventoryListener implements Listener {
 
         if(e.getView().getTitle().equalsIgnoreCase("§6" + p.getName() + "'s Peletorter")) {
 
-            if(e.getCurrentItem().getType() == Material.SAND) {
+            if (e.getCurrentItem().getType() == Material.SAND) {
                 p.teleport(plugin.fm.getLocation("insel"));
             }
-            if(e.getCurrentItem().getType() == Material.FIRE_CHARGE)
+            if (e.getCurrentItem().getType() == Material.FIRE_CHARGE) {
                 p.teleport(plugin.fm.getLocation("lobby"));
+        }
+            if(e.getCurrentItem().getType() == Material.WOODEN_AXE) {
+                p.teleport(plugin.fm.getLocation("gungame1"));
+            }
             e.setCancelled(true);
         }
     }
