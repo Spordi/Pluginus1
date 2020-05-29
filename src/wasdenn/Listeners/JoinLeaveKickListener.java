@@ -1,5 +1,6 @@
 package wasdenn.Listeners;
 
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,6 +21,7 @@ public class JoinLeaveKickListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
+        p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(1024);
         initialize(p); //NEU erklär ich dir später
         if (p.isOp()) {
             e.setJoinMessage("§4" + p.getName() + " §bist dem Spiel beigetreten");

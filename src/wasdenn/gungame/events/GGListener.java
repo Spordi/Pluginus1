@@ -100,6 +100,7 @@ public class GGListener implements Listener {
             if (GGMain.isWorld(p.getWorld())) {
                 Player killer = (Player) e.getDamager();
                 if (p.getHealth() <= e.getDamage()) {
+                    e.setCancelled(true);
                     GGMain.level.replace(killer, GGMain.level.get(killer) + 1);
                     int i = GGMain.level.get(p);
                     if (i > 1) GGMain.level.replace(p, i - 1);
