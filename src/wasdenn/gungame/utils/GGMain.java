@@ -56,7 +56,7 @@ public class GGMain {
 
     public static void startGame(Main main) {
         counterStarted = false;
-        Main.ggState = GGState.GREACE;
+        Main.ggState = GGState.INGAME;
         counter = 60;
         int i = 1;
         sendToWorld("§aDas Spiel startet!");
