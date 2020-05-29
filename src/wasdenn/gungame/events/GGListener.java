@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import wasdenn.Main;
 import wasdenn.gungame.utils.GGMain;
 import wasdenn.gungame.utils.GGState;
@@ -64,8 +66,10 @@ public class GGListener implements Listener {
         if(Main.ggState != GGState.INGAME && GGMain.isWorld(e.getEntity().getWorld())) {
             e.setCancelled(true);
         }
-        if(GGMain.isWorld(e.getEntity().getWorld()) && e.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
-            e.setCancelled(true);
+        if(GGMain.isWorld(e.getEntity().getWorld()) && e.getCause() != EntityDamageEvent.DamageCause.ENTITY_ATTACK ) {
+            if(e.getCause() != EntityDamageEvent.DamageCause.PROJECTILE) {
+                e.setCancelled(true);
+            }
         }
     }
 
@@ -107,7 +111,10 @@ public class GGListener implements Listener {
                     GGMain.updateInventory(killer);
                     Random random = new Random();
                     int rdm = random.nextInt(7) + 1;
+                    GGMain.sendToWorld("§e" + p.getName() + " §cwurde von §e" + killer.getName() + " §cgetötet");
                     p.teleport(plugin.fm.getLocation("gungame.spawn." + rdm));
+                    p.setHealth(20);
+                    killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 5, 3));
                     GGMain.updateInventory(p);
                 }
             }
