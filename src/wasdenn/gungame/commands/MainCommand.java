@@ -50,6 +50,14 @@ public class MainCommand implements CommandExecutor {
                 plugin.fm.setLocation("gungame.lobby", p.getLocation());
                 p.sendMessage("§aDu hast erfolgreich den Spectatorspawn gesetzt!");
             }
+
+            else if(args[0].equalsIgnoreCase("tp")) {
+                if(args[1].equalsIgnoreCase("lobby")) {
+                    p.teleport(plugin.fm.getLocation("lobby"));
+                    return true;
+                }
+                if(args[1].equalsIgnoreCase("gungame1")) p.teleport(plugin.fm.getLocation("gungame1"));
+            }
         }
         return true;
     }

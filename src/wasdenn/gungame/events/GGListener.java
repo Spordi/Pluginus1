@@ -23,8 +23,10 @@ public class GGListener implements Listener {
     @EventHandler
     public void on(PlayerChangedWorldEvent e) {
         if(e.getPlayer().getWorld().getName().equalsIgnoreCase("gungame1")) {
+            System.out.println("Hallo");
             Bukkit.getPluginManager().callEvent(new GGJoinEvent(e.getPlayer(), e.getFrom(), e.getPlayer().getWorld()));
         }else if(e.getFrom().getName().equalsIgnoreCase("gungame1")) {
+            System.out.println("pallo");
             Bukkit.getPluginManager().callEvent(new GGLeaveEvent(e.getPlayer(), e.getFrom(), e.getPlayer().getWorld()));
         }
     }
@@ -52,4 +54,5 @@ public class GGListener implements Listener {
             }
         }
     }
+
 }

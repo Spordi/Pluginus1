@@ -13,6 +13,7 @@ public class KeinSchadenInLobbyListener implements Listener {
         this.plugin = main;
     }
 
+
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
         if(e.getEntity() instanceof Player) {

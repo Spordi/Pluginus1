@@ -20,10 +20,10 @@ public class JoinLeaveKickListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
+        initialize(p); //NEU erklär ich dir später
         if (p.isOp()) {
             e.setJoinMessage("§4" + p.getName() + " §bist dem Spiel beigetreten");
         } else {
-            initialize(p); //NEU erklär ich dir später
             if(plugin.isWartung) {
                 p.kickPlayer("§cDer Server befindet sich im Wartungsmodus! Warte bis die Arbeiten abgeschlossen sind.");
             }
@@ -73,6 +73,4 @@ public class JoinLeaveKickListener implements Listener {
         p.teleport(plugin.fm.getLocation("lobby"));
     }
 
-
-    //mallo Heyssam
 }
