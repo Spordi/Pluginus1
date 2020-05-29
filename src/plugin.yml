@@ -43,3 +43,7 @@ commands:
   wartung:
     description: Setzt den Server in den Wartungsmodus (und umgekehrt)
     usage: </wartung>
+
+  gg:
+    descripton: Die GunGame Commands
+    usage: </gg>
