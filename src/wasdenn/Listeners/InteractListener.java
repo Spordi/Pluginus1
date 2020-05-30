@@ -1,7 +1,10 @@
 package wasdenn.Listeners;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.ComponentBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,34 +17,50 @@ import wasdenn.Utils.Utils;
 import wasdenn.gungame.utils.GGMain;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class InteractListener implements Listener {
 
     private Main plugin;
-    ArrayList<String> hidden = new ArrayList<>();
 
 
 
     public InteractListener(Main main) {
         this.plugin = main;
         }
+     ArrayList<String> sichtbarkeit = new ArrayList();
            
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
 
+        UUID i = p.getUniqueId();
+        if(e.getAction() == Action.LEFT_CLICK_BLOCK | e.getAction() == Action.LEFT_CLICK_AIR) {
+            if(plugin.erschreckend.containsKey(i)) {
+                return; }
+            plugin.erschreckend.put(i, 6000);
+            if(e.getMaterial().equals(Material.IRON_SWORD)) {
+                GGMain.lobby.getPlayers().forEach(playerer -> playerer.sendTitle("§b*Erschreckend Piratnoises*", "by §e" + p.getName(), 10, 50, 10));
+                GGMain.lobby.getPlayers().forEach(playerer -> playerer.playSound(playerer.getLocation(), Sound.ENTITY_DROWNED_DEATH_WATER, 10, 10));
+            }
+        }
+
         if(e.getAction() == Action.RIGHT_CLICK_AIR | e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if(e.getMaterial().equals(Material.NETHER_STAR)) {
                 for(Player players : Bukkit.getOnlinePlayers()) {
-                    if(hidden.contains(p.getName())) {
-                        hidden.remove(p.getName());
+                    if(sichtbarkeit.contains(p.getName())) {
                         p.showPlayer(plugin, players);
-                        p.sendMessage("§aSichtbar");
-                    } else if(!hidden.contains(p.getName())) {
-                            hidden.add(p.getName());
+                        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new ComponentBuilder("§eSpieler §8>> §2Sichtbar").create());
+                        //p.sendMessage("§8[§eSichtbarkeit§8] Spieler sind für dich jetzt: §2Sichtbar");
+                        sichtbarkeit.remove(p.getName());
+                        return;
+                    } else if(!sichtbarkeit.contains(p.getName())) {
                             p.hidePlayer(plugin, players);
-                            p.sendMessage("§aUnsichtbar");
+                            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new ComponentBuilder("§eSpieler §8>> §4Unsichtbar").create());
+                            //p.sendMessage("§8[§eSichtbarkeit§8] Spieler sind für dich jetzt: §4Unsichtbar");
+                            sichtbarkeit.add(p.getName());
+                            return;
                         }
                 }
             }else if(e.getMaterial().equals(Material.RED_BED)) {

@@ -24,11 +24,13 @@ public class GGMain {
     public static boolean counterStarted = false;
     public static int counter = 60;
     public static World world = Bukkit.getWorld("gungame1");
+    public static World lobby = Bukkit.getWorld("world");
     public static String prefix = "§8[§7GG§8] ";
     public static ArrayList<Player> ingame = new ArrayList<>();
     public static HashMap<Player, Integer> level = new HashMap<>();
     public static HashMap<Player, Integer> kills = new HashMap<>();
     public static HashMap<Player, Integer> deaths = new HashMap<>();
+
 
     public static void startCounter(Main main) {
         counterStarted = true;
