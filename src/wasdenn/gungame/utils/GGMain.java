@@ -1,6 +1,7 @@
 package wasdenn.gungame.utils;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -40,6 +41,9 @@ public class GGMain {
                     cancel();
                 }
                 if(counter > 0) {
+                    if(counter<4) {
+                        world.getPlayers().forEach(ggPlayer -> ggPlayer.playSound(ggPlayer.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1));
+                    }
                     if(counter == 60 || counter == 45 || counter == 30 || counter == 15 || counter == 10 || counter <= 5 && counter > 1) sendToWorld("§aDas Spiel startet in §e" + counter + " §aSekunden!");
                     if(counter == 1) sendToWorld("§aDas Spiel startet in §e" + counter + " §aSekunde!");
                     counter--;
@@ -67,6 +71,7 @@ public class GGMain {
         sendToWorld("§aDas Spiel startet!");
         for(Player player : world.getPlayers()) {
             player.teleport(main.fm.getLocation("gungame.spawn." + i));
+            player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
             ingame.add(player);
             player.getInventory().clear();
             player.getInventory().setContents(GGInventories.goldsword());
@@ -106,7 +111,8 @@ public class GGMain {
 
     public static void endGame(Main plugin, Player winner) {
         world.getPlayers().forEach(player -> player.sendTitle("§e" + winner.getName(), "§ahat das Spiel gewonnen!", 10, 60, 10));
-        world.getPlayers().forEach(player -> player.sendMessage(GGMain.prefix + "§3Deine Stats:\n"+prefix+"Tode: §e" + GGMain.deaths.get(player) + "\n"+prefix+"§3Kills: §e" + GGMain.kills.get(player)));
+        world.getPlayers().forEach(player -> player.sendMessage(GGMain.prefix + "§3Deine Stats:\n"+prefix+"Tode: §e" + GGMain.deaths.get(player) + "\n"+prefix+"Kills: §e" + GGMain.kills.get(player)));
+        world.getPlayers().forEach(ggPlayer -> ggPlayer.playSound(ggPlayer.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 1));
         Main.ggState = GGState.END;
         level.clear();
         kills.clear();

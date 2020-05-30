@@ -2,6 +2,7 @@ package wasdenn.gungame.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Sound;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -142,6 +143,7 @@ public class GGListener implements Listener {
         GGMain.kills.replace(killer, GGMain.kills.get(killer) + 1);
         GGMain.deaths.replace(p, GGMain.deaths.get(p) + 1);
         GGMain.level.replace(killer, GGMain.level.get(killer) + 1);
+        killer.playSound(killer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
         int i = GGMain.level.get(p);
         if (i > 1) GGMain.level.replace(p, i - 1);
         GGMain.updateInventory(killer);
@@ -149,6 +151,7 @@ public class GGListener implements Listener {
         int rdm = random.nextInt(7) + 1;
         GGMain.sendToWorld("§e" + p.getName() + " §cwurde von §e" + killer.getName() + " §cgetötet");
         p.teleport(plugin.fm.getLocation("gungame.spawn." + rdm));
+        p.playSound(p.getLocation(), Sound.ENTITY_GENERIC_BIG_FALL, 1, 1);
         p.setHealth(20);
         killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 30, 3));
         GGMain.updateInventory(p);
