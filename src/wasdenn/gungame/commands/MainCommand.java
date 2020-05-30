@@ -48,7 +48,7 @@ public class MainCommand implements CommandExecutor {
                 plugin.fm.setLocation("gungame.spawn." + spawn, p.getLocation());
                 p.sendMessage("§aDu hast erfolgreich den Spawn " + spawn +  " gesetzt!");
             } else if(args[0].equalsIgnoreCase("setspec")) {
-                plugin.fm.setLocation("gungame.lobby", p.getLocation());
+                plugin.fm.setLocation("gungame.spec", p.getLocation());
                 p.sendMessage("§aDu hast erfolgreich den Spectatorspawn gesetzt!");
             }
 

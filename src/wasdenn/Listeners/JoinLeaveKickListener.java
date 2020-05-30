@@ -35,7 +35,7 @@ public class JoinLeaveKickListener implements Listener {
             e.setJoinMessage("§b" + p.getName() + " §3ist schwul");
         }
         if(GGMain.isWorld(p.getWorld())) {
-            Bukkit.getPluginManager().callEvent(new GGJoinEvent(p, null, p.getWorld()));
+            Bukkit.getPluginManager().callEvent(new GGJoinEvent(p, p.getWorld(), p.getWorld()));
         }
     }
 
@@ -48,7 +48,7 @@ public class JoinLeaveKickListener implements Listener {
             e.setQuitMessage("§b" + p.getName() + " §3hat das Spiel verlassen");
         }
         if(GGMain.isWorld(p.getWorld())) {
-            Bukkit.getPluginManager().callEvent(new GGLeaveEvent(p, null, p.getWorld()));
+            Bukkit.getPluginManager().callEvent(new GGLeaveEvent(p, p.getWorld(), p.getWorld()));
         }
     }
 

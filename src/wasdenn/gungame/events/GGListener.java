@@ -1,6 +1,7 @@
 package wasdenn.gungame.events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,6 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 import wasdenn.Main;
 import wasdenn.Utils.Utils;
 import wasdenn.gungame.utils.GGMain;
+import wasdenn.gungame.utils.GGScoreboard;
 import wasdenn.gungame.utils.GGState;
 
 import java.util.Random;
@@ -45,11 +47,17 @@ public class GGListener implements Listener {
         GGMain.sendToWorld("§e" + p.getName() + " §ahat das Spiel betreten");
         if(Main.ggState == GGState.LOBBY) {
             p.teleport(plugin.fm.getLocation("gungame.lobby"));
-                    p.getInventory().clear();
-                    p.getInventory().setItem(8, Utils.hubBett());
+            p.getInventory().clear();
+            p.getInventory().setItem(8, Utils.hubBett());
             if(!GGMain.counterStarted && GGMain.countPeople() > 1) {
                 GGMain.startCounter(plugin);
             }
+        } else if(Main.ggState == GGState.INGAME || Main.ggState == GGState.END) {
+            p.teleport(plugin.fm.getLocation("gungame.spec"));
+            p.getInventory().clear();
+            p.getInventory().setItem(8, Utils.hubBett());
+            p.setGameMode(GameMode.SPECTATOR);
+            p.sendMessage(GGMain.prefix + "§9Das Spiel hat bereits begonnen, du kannst aber zuschauen!");
         }
     }
 
@@ -60,6 +68,14 @@ public class GGListener implements Listener {
         if(Main.ggState == GGState.LOBBY) {
             if(GGMain.counterStarted && GGMain.countPeople() < 2) {
                 GGMain.counterStarted = false;
+            }
+        } else if(Main.ggState == GGState.INGAME) {
+            GGMain.kills.remove(p);
+            GGMain.ingame.remove(p);
+            GGMain.deaths.remove(p);
+            GGMain.level.remove(p);
+            if(GGMain.ingame.size() == 1) {
+                GGMain.endGame(plugin, GGMain.ingame.get(0));
             }
         }
     }
@@ -104,6 +120,8 @@ public class GGListener implements Listener {
     public void on(EntityDamageByEntityEvent e) {
         if (e.getEntity() instanceof Player && Main.ggState == GGState.INGAME) {
             Player p = (Player) e.getEntity();
+            p.setFoodLevel(20);
+            p.setSaturation(0);
             if (GGMain.isWorld(p.getWorld())) {
                 Player killer;
                 if(e.getDamager() instanceof Arrow) {
@@ -121,6 +139,8 @@ public class GGListener implements Listener {
     }
 
     public void onKill(Player p, Player killer) {
+        GGMain.kills.replace(killer, GGMain.kills.get(killer) + 1);
+        GGMain.deaths.replace(p, GGMain.deaths.get(p) + 1);
         GGMain.level.replace(killer, GGMain.level.get(killer) + 1);
         int i = GGMain.level.get(p);
         if (i > 1) GGMain.level.replace(p, i - 1);
@@ -132,6 +152,7 @@ public class GGListener implements Listener {
         p.setHealth(20);
         killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 30, 3));
         GGMain.updateInventory(p);
+        GGMain.world.getPlayers().forEach(GGScoreboard::updateScoreboard);
         if(GGMain.level.get(killer) == 6) {
             GGMain.endGame(plugin, killer);
         }
