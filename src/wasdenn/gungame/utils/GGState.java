@@ -6,7 +6,6 @@ package wasdenn.gungame.utils;
 public enum GGState {
 
     LOBBY,
-    GREACE,
     INGAME,
     END;
 

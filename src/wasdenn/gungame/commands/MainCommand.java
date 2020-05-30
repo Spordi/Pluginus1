@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import wasdenn.Main;
+import wasdenn.gungame.utils.GGMain;
 
 /**
  * Created by Meyssam Saghiri on Mai 29, 2020
@@ -47,7 +48,7 @@ public class MainCommand implements CommandExecutor {
                 plugin.fm.setLocation("gungame.spawn." + spawn, p.getLocation());
                 p.sendMessage("§aDu hast erfolgreich den Spawn " + spawn +  " gesetzt!");
             } else if(args[0].equalsIgnoreCase("setspec")) {
-                plugin.fm.setLocation("gungame.lobby", p.getLocation());
+                plugin.fm.setLocation("gungame.spec", p.getLocation());
                 p.sendMessage("§aDu hast erfolgreich den Spectatorspawn gesetzt!");
             }
 
@@ -57,6 +58,9 @@ public class MainCommand implements CommandExecutor {
                     return true;
                 }
                 if(args[1].equalsIgnoreCase("gungame1")) p.teleport(plugin.fm.getLocation("gungame1"));
+            }else if(args[0].equalsIgnoreCase("start")) {
+                GGMain.counter = 5;
+                p.sendMessage(GGMain.prefix + "§aDu hast den Timer auf §e5 §aSekunden gekürzt!");
             }
         }
         return true;

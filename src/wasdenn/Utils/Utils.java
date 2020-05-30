@@ -1,5 +1,6 @@
 package wasdenn.Utils;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -30,6 +31,7 @@ public class Utils {
     }
     public static void lobbyteleport(Main plugin, Player p) {
         p.teleport(plugin.fm.getLocation("lobby"));
+        p.setGameMode(GameMode.ADVENTURE);
         p.getInventory().clear();
         p.getInventory().setItem(4, kompass());
         p.getInventory().setItem(2, netherstar());
