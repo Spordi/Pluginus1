@@ -34,10 +34,8 @@ public class GGListener implements Listener {
     @EventHandler
     public void on(PlayerChangedWorldEvent e) {
         if(e.getPlayer().getWorld().getName().equalsIgnoreCase("gungame1")) {
-            System.out.println("Hallo");
             Bukkit.getPluginManager().callEvent(new GGJoinEvent(e.getPlayer(), e.getFrom(), e.getPlayer().getWorld()));
         }else if(e.getFrom().getName().equalsIgnoreCase("gungame1")) {
-            System.out.println("pallo");
             Bukkit.getPluginManager().callEvent(new GGLeaveEvent(e.getPlayer(), e.getFrom(), e.getPlayer().getWorld()));
         }
     }
@@ -47,6 +45,7 @@ public class GGListener implements Listener {
         Player p = e.getPlayer();
         GGMain.sendToWorld("§e" + p.getName() + " §ahat das Spiel betreten");
         if(Main.ggState == GGState.LOBBY) {
+            p.setGameMode(GameMode.ADVENTURE);
             p.teleport(plugin.fm.getLocation("gungame.lobby"));
             p.getInventory().clear();
             p.getInventory().setItem(8, Utils.hubBett());
@@ -151,6 +150,7 @@ public class GGListener implements Listener {
         int rdm = random.nextInt(7) + 1;
         GGMain.sendToWorld("§e" + p.getName() + " §cwurde von §e" + killer.getName() + " §cgetötet");
         p.teleport(plugin.fm.getLocation("gungame.spawn." + rdm));
+        p.setNoDamageTicks(20);
         p.playSound(p.getLocation(), Sound.ENTITY_GENERIC_BIG_FALL, 1, 1);
         p.setHealth(20);
         killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 30, 3));

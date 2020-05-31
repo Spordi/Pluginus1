@@ -39,8 +39,14 @@ public class GGMain {
                 if(!counterStarted) {
                     world.getPlayers().forEach(player -> player.sendMessage(prefix + "§cDer Countdown wurde abgebrochen!"));
                     cancel();
+                    return; //eigtl unnötig, weil eh danach nichts mehr kommt
                 }
                 if(counter > 0) {
+                    for(Player players : world.getPlayers()) {
+                        players.setLevel(counter);
+                        float xp = (float)(counter/60.0D);
+                        players.setExp(xp);
+                    }
                     if(counter<4) {
                         world.getPlayers().forEach(ggPlayer -> ggPlayer.playSound(ggPlayer.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1));
                     }

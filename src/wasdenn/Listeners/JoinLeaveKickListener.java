@@ -55,6 +55,9 @@ public class JoinLeaveKickListener implements Listener {
     @EventHandler
     public void onKick(PlayerKickEvent e) {
         Player p = e.getPlayer();
+        if(GGMain.isWorld(p.getWorld())) {
+            Bukkit.getPluginManager().callEvent(new GGJoinEvent(p, p.getWorld(), p.getWorld()));
+        }
         if(p.isBanned()){
             e.setReason("§3BigMac hat dich weggebannt, diggah!");
             return;

@@ -21,7 +21,7 @@ public class InventoryListener implements Listener {
         Player p = (Player) e.getWhoClicked();
 
         if(e.getView().getTitle().equalsIgnoreCase("§6" + p.getName() + "'s Peletorter")) {
-            if (e.getClickedInventory() != null) {
+            if (e.getClickedInventory() != null && e.getCurrentItem() != null) {
                 if (e.getCurrentItem().getType() == Material.SAND) {
                     p.teleport(plugin.fm.getLocation("insel"));
                 }
