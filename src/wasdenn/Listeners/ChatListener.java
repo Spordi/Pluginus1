@@ -18,6 +18,11 @@ public class ChatListener implements Listener {
     public void onSend(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
         String message = e.getMessage();
+
+        /*
+        als erstes machst du einfach WENN DIE NACHRICHT NICHT MIT "@a" beginnt e.setcancelled true, damit die nachricht nicht gesendet wird
+        danach sendes du manuell mit p.getWorld().getPlayers().forEach(player -> player.sendMessage...
+         */
         if(p.isOp()) e.setMessage("§4" + message);
     }
 }
