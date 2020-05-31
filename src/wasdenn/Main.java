@@ -23,6 +23,7 @@ public class Main extends JavaPlugin implements Listener {
     public static GGState ggState;
 
     public HashMap<UUID, Integer> marmeladenbrotmithonig = new HashMap<>();
+    public HashMap<UUID, Integer> erschreckend = new HashMap<>();
     public boolean isWartung = false;
 
     @Override

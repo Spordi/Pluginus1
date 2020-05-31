@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Main;
 import wasdenn.Utils.Utils;
 import wasdenn.gungame.events.GGJoinEvent;
@@ -25,7 +26,15 @@ public class JoinLeaveKickListener implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
         p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(1024);
-        Utils.lobbyteleport (plugin, p); //NEU erklär ich dir später
+        p.setHealthScale(20);
+        p.setFoodLevel(20);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Utils.lobbyteleport (plugin, p);
+            }
+        }.runTaskLater(plugin, 5);
+
         if (p.isOp()) {
             e.setJoinMessage("§4" + p.getName() + " §bist dem Spiel beigetreten");
         } else {

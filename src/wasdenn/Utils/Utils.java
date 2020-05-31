@@ -8,6 +8,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 import wasdenn.Main;
 
 public class Utils {
+    public static ItemStack piratenschwert() {
+        ItemStack item = new ItemStack(Material.IRON_SWORD);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName("§4Piratenschwert");
+        item.setItemMeta(meta);
+        return item;
+    }
     public static ItemStack kompass() {
         ItemStack item = new ItemStack(Material.COMPASS);
         ItemMeta meta = item.getItemMeta();
@@ -18,7 +25,7 @@ public class Utils {
     public static ItemStack netherstar() {
         ItemStack item = new ItemStack(Material.NETHER_STAR);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName("§6Jetzt bin ich weg, und jetzt bin ich wieder da. Und jetzt bin ich wieder weg. :/");
+        meta.setDisplayName("§6Sichtbarkeit");
         item.setItemMeta(meta);
         return item;
     }
@@ -33,6 +40,7 @@ public class Utils {
         p.teleport(plugin.fm.getLocation("lobby"));
         p.setGameMode(GameMode.ADVENTURE);
         p.getInventory().clear();
+        p.getInventory().setItem(0, piratenschwert());
         p.getInventory().setItem(4, kompass());
         p.getInventory().setItem(2, netherstar());
         p.sendMessage("§aDu bist jetzt in der Lobby");
