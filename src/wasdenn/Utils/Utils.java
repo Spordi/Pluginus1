@@ -11,7 +11,7 @@ public class Utils {
     public static ItemStack piratenschwert() {
         ItemStack item = new ItemStack(Material.IRON_SWORD);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName("§4Piratenschwert");
+        meta.setDisplayName("§4Piratensäbel");
         item.setItemMeta(meta);
         return item;
     }
