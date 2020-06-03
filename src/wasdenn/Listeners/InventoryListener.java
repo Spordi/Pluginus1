@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import wasdenn.Main;
+import wasdenn.Utils.Utils;
 
 public class InventoryListener implements Listener {
     private Main plugin;
@@ -26,7 +27,7 @@ public class InventoryListener implements Listener {
                     p.teleport(plugin.fm.getLocation("insel"));
                 }
             if (e.getCurrentItem().getType() == Material.FIRE_CHARGE) {
-                p.teleport(plugin.fm.getLocation("lobby"));
+                Utils.lobbyteleport(plugin, p);
             }
             if (e.getCurrentItem().getType() == Material.WOODEN_AXE) {
                 p.teleport(plugin.fm.getLocation("gungame1"));

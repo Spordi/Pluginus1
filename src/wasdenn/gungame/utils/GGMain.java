@@ -121,6 +121,7 @@ public class GGMain {
         world.getPlayers().forEach(player -> player.sendTitle("§e" + winner.getName(), "§ahat das Spiel gewonnen!", 10, 60, 10));
         world.getPlayers().forEach(player -> player.sendMessage(GGMain.prefix + "§3Deine Stats:\n"+prefix+"Tode: §e" + GGMain.deaths.get(player) + "\n"+prefix+"Kills: §e" + GGMain.kills.get(player)));
         world.getPlayers().forEach(ggPlayer -> ggPlayer.playSound(ggPlayer.getLocation(), Sound.ENTITY_WITHER_DEATH, 1, 1));
+        world.getPlayers().forEach(ggPlayer -> ggPlayer.getInventory().setItem(8, Utils.hubBett()));
         Main.ggState = GGState.END;
         level.clear();
         kills.clear();

@@ -25,4 +25,13 @@ public class ChatListener implements Listener {
          */
         if(p.isOp()) e.setMessage("§4" + message);
     }
+    @EventHandler
+    public void onSendInWelt(AsyncPlayerChatEvent e) {
+        Player p = e.getPlayer();
+        if(!e.getMessage().startsWith("@a")) {
+            e.setCancelled(true);
+            p.getWorld().getPlayers().forEach(player -> player.sendMessage("<" + p.getName() + "> " + e.getMessage()));
+
+        }else p.sendMessage("<" + p.getName() + "> " + e.getMessage());
+    }
 }

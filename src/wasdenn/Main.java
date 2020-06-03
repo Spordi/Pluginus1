@@ -23,13 +23,13 @@ public class Main extends JavaPlugin implements Listener {
     public static GGState ggState;
 
     public HashMap<UUID, Integer> marmeladenbrotmithonig = new HashMap<>();
-    public HashMap<UUID, Integer> erschreckend = new HashMap<>();
+    public HashMap<UUID, Long> erschreckend = new HashMap<UUID, Long>();
     public boolean isWartung = false;
 
     @Override
     public void onEnable() {
-        new WorldCreator("gungame1").createWorld();
-        Bukkit.getWorld("gungame1").setMonsterSpawnLimit(0);
+       new WorldCreator("gungame1").createWorld();
+       Bukkit.getWorld("gungame1").setMonsterSpawnLimit(0);
         registerEvents();
         registerCommands();
         GGInitialize.initialize(this);

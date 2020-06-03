@@ -37,10 +37,11 @@ public class InteractListener implements Listener {
 
         UUID i = p.getUniqueId();
         if(e.getAction() == Action.LEFT_CLICK_BLOCK | e.getAction() == Action.LEFT_CLICK_AIR) {
-            if(plugin.erschreckend.containsKey(i)) {
-                return; }
-            plugin.erschreckend.put(i, 6000);
+
             if(e.getMaterial().equals(Material.IRON_SWORD)) {
+                if(plugin.erschreckend.containsKey(p.getUniqueId()) && System.currentTimeMillis()-plugin.erschreckend.get(p.getUniqueId()) <= 6000) {
+                return;}
+                plugin.erschreckend.put(i, System.currentTimeMillis());
                 GGMain.lobby.getPlayers().forEach(playerer -> playerer.sendTitle("§b*Erschreckend Piratnoises*", "by §e" + p.getName(), 10, 50, 10));
                 GGMain.lobby.getPlayers().forEach(playerer -> playerer.playSound(playerer.getLocation(), Sound.ENTITY_DROWNED_DEATH_WATER, 10, 10));
             }

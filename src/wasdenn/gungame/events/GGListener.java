@@ -45,6 +45,7 @@ public class GGListener implements Listener {
         Player p = e.getPlayer();
         GGMain.sendToWorld("§e" + p.getName() + " §ahat das Spiel betreten");
         if(Main.ggState == GGState.LOBBY) {
+
             p.setGameMode(GameMode.ADVENTURE);
             p.teleport(plugin.fm.getLocation("gungame.lobby"));
             p.getInventory().clear();
