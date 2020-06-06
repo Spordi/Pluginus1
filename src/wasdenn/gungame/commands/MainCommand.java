@@ -38,7 +38,7 @@ public class MainCommand implements CommandExecutor {
                 try {
                     spawn = Integer.parseInt(args[1]);
                 }catch (NumberFormatException e) {
-                    p.sendMessage("§cDein zweites Argument muss ne Nummer sein!");
+                    p.sendMessage("§cDein zweites Argument muss eine Nummer sein!");
                     return true;
                 }
                 if(spawn > 8) {

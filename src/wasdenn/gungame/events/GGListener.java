@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 import wasdenn.Main;
 import wasdenn.Utils.Utils;
 import wasdenn.gungame.utils.GGMain;
@@ -140,6 +141,19 @@ public class GGListener implements Listener {
     }
 
     public void onKill(Player p, Player killer) {
+        p.setInvulnerable(true);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                p.setInvulnerable(false);
+            }
+        }.runTaskLater(plugin, 20);
+        Random random = new Random();
+        int rdm = random.nextInt(7) + 1;
+        p.teleport(plugin.fm.getLocation("gungame.spawn." + rdm));
+        p.playSound(p.getLocation(), Sound.ENTITY_GENERIC_BIG_FALL, 1, 1);
+        p.setHealth(20);
+        GGMain.updateInventory(p);
         GGMain.kills.replace(killer, GGMain.kills.get(killer) + 1);
         GGMain.deaths.replace(p, GGMain.deaths.get(p) + 1);
         GGMain.level.replace(killer, GGMain.level.get(killer) + 1);
@@ -147,15 +161,8 @@ public class GGListener implements Listener {
         int i = GGMain.level.get(p);
         if (i > 1) GGMain.level.replace(p, i - 1);
         GGMain.updateInventory(killer);
-        Random random = new Random();
-        int rdm = random.nextInt(7) + 1;
         GGMain.sendToWorld("§e" + p.getName() + " §cwurde von §e" + killer.getName() + " §cgetötet");
-        p.teleport(plugin.fm.getLocation("gungame.spawn." + rdm));
-        p.setNoDamageTicks(20);
-        p.playSound(p.getLocation(), Sound.ENTITY_GENERIC_BIG_FALL, 1, 1);
-        p.setHealth(20);
-        killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 30, 3));
-        GGMain.updateInventory(p);
+        killer.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20, 3));
         GGMain.world.getPlayers().forEach(GGScoreboard::updateScoreboard);
         if(GGMain.level.get(killer) == 6) {
             GGMain.endGame(plugin, killer);

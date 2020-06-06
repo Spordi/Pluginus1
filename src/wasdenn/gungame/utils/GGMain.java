@@ -41,7 +41,7 @@ public class GGMain {
                 if(!counterStarted) {
                     world.getPlayers().forEach(player -> player.sendMessage(prefix + "§cDer Countdown wurde abgebrochen!"));
                     cancel();
-                    return; //eigtl unnötig, weil eh danach nichts mehr kommt
+                    return;
                 }
                 if(counter > 0) {
                     for(Player players : world.getPlayers()) {
