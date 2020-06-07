@@ -21,6 +21,7 @@ public class Main extends JavaPlugin implements Listener {
     public Inventory Inv = null;
     public FileManager fm = new FileManager(this);
     public static GGState ggState;
+    public static Main plugin;
 
     public HashMap<UUID, Integer> marmeladenbrotmithonig = new HashMap<>();
     public HashMap<UUID, Long> erschreckend = new HashMap<UUID, Long>();
@@ -28,6 +29,7 @@ public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+       plugin = this;
        new WorldCreator("gungame1").createWorld();
        Bukkit.getWorld("gungame1").setMonsterSpawnLimit(0);
         registerEvents();
@@ -35,10 +37,10 @@ public class Main extends JavaPlugin implements Listener {
         GGInitialize.initialize(this);
         System.out.println("[Info] Plugin erfolgreich aktiviert!");
 
-        sendTitle();
+        sendWartungsTitle();
     }
 
-    private void sendTitle() {
+    private void sendWartungsTitle() {
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -68,6 +70,9 @@ public class Main extends JavaPlugin implements Listener {
             getCommand("wartung").setExecutor(new WartungsmodusCommand(this));
             getCommand("setpos").setExecutor( new SetPosCommand(this));
             getCommand("hub").setExecutor(new HubCommand(this));
+            NickCommand nickCommand = new NickCommand(this);
+            nickCommand.setValues();
+            getCommand("nick").setExecutor(nickCommand);
     }
 
 
