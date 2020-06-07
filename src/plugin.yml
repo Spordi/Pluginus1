@@ -5,6 +5,9 @@ authors: [Meyssus, Lassus]
 main: wasdenn.Main
 
 commands:
+  nick:
+    description: Du kannst dich nicken
+    usage: </nick>
   hub:
     description: In die Lobby zurück Teleportieren.
     usage: </hub>
@@ -46,4 +49,3 @@ commands:
   wartung:
     description: Setzt den Server in den Wartungsmodus (und umgekehrt)
     usage: </wartung>
-
